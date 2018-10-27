@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+<!-- Start Of blopck body --->
+
+{% block body %}
+
+
+<!--- Division for Iframe to show youtube video --->
+
+<div class="container iframe_div">
+
+    <div class="row">
+        <div class="col-md-8 iframe_class">
+            <iframe width=100% height="430" allowfullscreen src="https://www.youtube.com/embed/{{vid_id}}">
+            </iframe>
+
+        </div>
+
+        <!---- Video information Division --->
+
+        <div class="col-md-3 iframe_class">
+            <h6><b>Video Info</b></h6>
+
+            <div>
+                <p>{{video_info.title}}</p>
+            </div>
+
+            <div>
+                <p>View Count- {{video_info.viewCount}}</p>
+            </div>
+
+            <div>
+                <p>Like Count- {{video_info.likeCount}}</p>
+            </div>
+
+            <div>
+                <p>{{video_info.description | slice:":170"}}....<a href="">Read More</a></p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!--- container division for related videos --->
+
+<div class="container">
+    <br>
+    <h5><b>Related Videos</b></h5>
+    <br>
+
+    {% for video in video_list %}
+
+    <div class="row">
+        <div class="col-md-4">
+            <a href="watch_id={{video.id}}"><img src="{{video.thumbnail}}" class="thumbnail_class"></a>
+        </div>
+
+        <div class="col-md-8 vid_detail_class">
+            <div class="row">
+
+                <a href="watch_id={{video.id}}"> {{video.title}}</a>
+
+            </div>
+            <div class="row">
+
+                <div class="col-md-6">
+                    {{video.channelTitle}}
+
+                </div>
+
+                <div class="col-md-6">
+                    {{video.publishedAt}}
+
+                </div>
+
+            </div>
+
+            <div class="row">
+                {{video.description | slice:":250"}}
+            </div>
+
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}
+
+<!--- End Block of watch page --->

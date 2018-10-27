@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<div class="container">
+    <br>
+    {% for video in video_list %}
+
+    <div class="row">
+        <div class="col-md-4 ">
+            <a href="watch_id={{video.id}}"><img src="{{video.thumbnail}}" class="thumbnail_class"></a>
+        </div>
+
+        <div class="col-md-8 vid_detail_class">
+            <div class="row">
+
+                <a href="watch_id={{video.id}}" class="vid_title_class"> <b>{{video.title}}</b></a>
+
+            </div>
+            <div class="row">
+
+                <div class="col-md-6">
+                    {{video.channelTitle}}
+
+                </div>
+
+                <div class="col-md-6">
+                    {{video.publishedAt}}
+
+                </div>
+
+            </div>
+
+            <div class="row">
+                {{video.description}}
+            </div>
+
+        </div>
+
+    </div>
+
+    <br>
+    <br>
+
+    {% endfor %}
+
+</div>
+
+{% if nextPageToken != None %}
+<div class="container">
+    <h5><a href="token={{nextPageToken}}7{{query}}">Next </a></h5>
+    <br>
+
+</div>
+{% endif %}
+
+
+{% endblock %}
